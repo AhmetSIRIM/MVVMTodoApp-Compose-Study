@@ -1,8 +1,9 @@
 package com.asirim.mvvmtodoappstudy.data
 
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
-class TodoRepositoryImpl(
+class TodoRepositoryImpl @Inject constructor(
     private val todoDao: TodoDao
 ) : TodoRepository {
 
