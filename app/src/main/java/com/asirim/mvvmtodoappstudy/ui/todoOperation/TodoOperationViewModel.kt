@@ -60,7 +60,7 @@ class TodoOperationViewModel @Inject constructor(
             is TodoOperationEvent.OnDescriptionChangeClick -> description =
                 todoOperationEvent.description
 
-            is TodoOperationEvent.OnSaveTodoOperationClick -> {
+            is TodoOperationEvent.OnSaveTodoClick -> {
 
                 viewModelScope.launch {
 

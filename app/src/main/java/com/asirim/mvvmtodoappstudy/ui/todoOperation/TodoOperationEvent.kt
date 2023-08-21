@@ -10,6 +10,6 @@ sealed class TodoOperationEvent {
         val description: String
     ) : TodoOperationEvent()
 
-    object OnSaveTodoOperationClick : TodoOperationEvent()
+    object OnSaveTodoClick : TodoOperationEvent()
 
 }
