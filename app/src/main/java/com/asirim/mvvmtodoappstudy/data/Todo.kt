@@ -6,8 +6,7 @@ import androidx.room.PrimaryKey
 @Entity
 data class Todo(
 
-    /**
-     * ["Room Library will handle this field so this will fill the Room Library even though it is nullable."](https://youtu.be/A7CGcFjQQtQ?t=460) */
+    /** ["Room Library will handle this field so this will fill the Room Library even though it is nullable."](https://youtu.be/A7CGcFjQQtQ?t=460) */
     @PrimaryKey
     val id: Int? = null,
 
