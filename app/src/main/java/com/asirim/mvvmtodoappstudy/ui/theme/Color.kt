@@ -19,4 +19,4 @@ enum class TodoColorEnum(val value: Color) {
     LIGHT_BLUE(Color(0xFFADD8E6)),
     LAVENDER(Color(0xFFE6E6FA)),
     HONEYDEW(Color(0xFFF0FFF0))
-} // TODO (Ahmet) ---> I will use this with 'TodoColorEnum.values().random()' and assign random color to todos.
+}
