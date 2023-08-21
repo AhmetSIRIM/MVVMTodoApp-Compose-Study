@@ -88,10 +88,9 @@ fun TodoItem(
     }
 }
 
-
-@Preview(showBackground = true)
+@Preview
 @Composable
-fun GreetingPreview() {
+fun TodoItemPreview() {
     MVVMTodoAppStudyTheme {
 
         Column {
