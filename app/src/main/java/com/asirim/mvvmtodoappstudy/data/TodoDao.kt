@@ -17,7 +17,7 @@ interface TodoDao {
     fun readAllTodo(): Flow<List<Todo>>
 
     @Query("SELECT * FROM todo WHERE id = :id")
-    suspend fun readTodoById(id: Int): Todo
+    suspend fun readTodoById(id: Int): Todo?
 
     @Delete
     suspend fun deleteTodo(todo: Todo) // TODO (Ahmet) ---> I will try it by 'id'

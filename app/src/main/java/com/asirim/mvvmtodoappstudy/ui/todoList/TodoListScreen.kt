@@ -21,11 +21,11 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.asirim.mvvmtodoappstudy.util.UiEvent
 
-/** ["We will not need 'UiEvent.PopBackStack' on this screen"](https://youtu.be/A7CGcFjQQtQ?t=3621)
+/**
+ * ["We will not need 'UiEvent.PopBackStack' on this screen"](https://youtu.be/A7CGcFjQQtQ?t=3621)
  *
  * ["How do we capture the click event in the 'snackbar'? We do this with 'val snackbarResult = XXX'."](https://youtu.be/A7CGcFjQQtQ?t=3669)
- *
- * */
+ */
 @Composable
 fun TodoListScreen(
     onNavigate: (UiEvent.Navigate) -> Unit,

@@ -15,7 +15,7 @@ class TodoRepositoryImpl @Inject constructor(
         return todoDao.readAllTodo()
     }
 
-    override suspend fun readTodoById(id: Int): Todo {
+    override suspend fun readTodoById(id: Int): Todo? {
         return todoDao.readTodoById(id)
     }
 
