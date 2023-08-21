@@ -80,7 +80,9 @@ fun TodoListScreen(
         }
     ) {
         LazyColumn(
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(top = 6.dp)
         ) {
             items(allTodo.value) { todo ->
                 TodoItem(
@@ -89,7 +91,7 @@ fun TodoListScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .clickable { todoListViewModel.onEvent(TodoListEvent.OnTodoClick(todo)) }
-                        .padding(16.dp) // TODO (Ahmet) ---> This line may cause problems. If this line causes the problem, either delete it here or the '.padding(10.dp)' in TodoItem.
+                        .padding(horizontal = 12.dp, vertical = 6.dp)
                 )
             }
         }

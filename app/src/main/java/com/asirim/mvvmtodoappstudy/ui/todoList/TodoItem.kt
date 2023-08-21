@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Card
 import androidx.compose.material.Checkbox
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
@@ -15,6 +17,9 @@ import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
@@ -34,57 +39,68 @@ fun TodoItem(
     modifier: Modifier = Modifier
 ) {
 
-    Row(
-        modifier = modifier
-            .background(
-                color = TodoColorEnum
-                    .values()
-                    .random().value
-            )
-            .padding(10.dp),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
+    val todoColor by remember {
+        mutableStateOf(
+            TodoColorEnum
+                .values()
+                .random()
+                .value
+        )
+    }
 
-        Column(
-            modifier = modifier.weight(1f),
-            verticalArrangement = Arrangement.Center
+    Card(
+        modifier = modifier,
+        shape = RoundedCornerShape(24.dp),
+        elevation = 10.dp
+    ) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
+                .background(color = todoColor)
+                .padding(10.dp)
+                .padding(end = 8.dp)
         ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically
+
+            Column(
+                modifier = Modifier
+                    .weight(1f)
+                    .padding(start = 6.dp),
+                verticalArrangement = Arrangement.Center
             ) {
-                Text(
-                    text = todo.title,
-                    fontSize = 20.sp,
-                    fontWeight = FontWeight.Bold
-                )
-                Spacer(
-                    modifier = Modifier.width(8.dp)
-                )
-                IconButton(
-                    onClick = {
-                        onEvent(TodoListEvent.OnDeleteTodoClick(todo))
-                    }
+                Row(
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Icon(
-                        imageVector = Icons.Default.Delete,
-                        contentDescription = "Delete"
+                    Text(
+                        text = todo.title,
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight.Bold
                     )
+                    Spacer(
+                        modifier = Modifier.width(8.dp)
+                    )
+                    IconButton(
+                        onClick = {
+                            onEvent(TodoListEvent.OnDeleteTodoClick(todo))
+                        }
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.Delete,
+                            contentDescription = "Delete"
+                        )
+                    }
+                }
+                todo.description?.let {
+                    Text(text = it)
+                    Spacer(modifier = Modifier.height(8.dp))
                 }
             }
-            todo.description?.let {
-                Spacer(
-                    modifier = Modifier
-                        .height(8.dp)
-                )
-                Text(text = it)
-            }
+            Checkbox(
+                checked = todo.isDone,
+                onCheckedChange = {
+                    onEvent(TodoListEvent.OnDoneUpdateClick(todo, it))
+                }
+            )
         }
-        Checkbox(
-            checked = todo.isDone,
-            onCheckedChange = {
-                onEvent(TodoListEvent.OnDoneUpdateClick(todo, it))
-            }
-        )
     }
 }
 

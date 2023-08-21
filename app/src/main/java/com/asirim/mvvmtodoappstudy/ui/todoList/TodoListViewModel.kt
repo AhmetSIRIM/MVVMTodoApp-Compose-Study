@@ -37,7 +37,8 @@ class TodoListViewModel @Inject constructor(
 
                     sendUiEvent(
                         UiEvent.ShowSnackbar(
-                            message = "Todo Deleted!", action = "Undo"
+                            message = "${todoListEvent.todo.title}  Deleted!",
+                            action = "Undo"
                         )
                     )
 
