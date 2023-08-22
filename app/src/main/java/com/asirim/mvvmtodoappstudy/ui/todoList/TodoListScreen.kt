@@ -32,9 +32,10 @@ fun TodoListScreen(
     todoListViewModel: TodoListViewModel = hiltViewModel()
 ) {
 
-    // TODO (Ahmet) ---> I will try the 'initial' with that -> listOf(dummyCompleteProjectTodo, dummyGetJobTodo, dummyMoveToAnotherCityTodo)
     val allTodo = todoListViewModel.allTodo.collectAsState(initial = emptyList())
     val scaffoldState = rememberScaffoldState()
+
+    todoListViewModel.initTodoDatabase()
 
     LaunchedEffect(key1 = true) {
         todoListViewModel.uiEvent.collect { uiEvent ->

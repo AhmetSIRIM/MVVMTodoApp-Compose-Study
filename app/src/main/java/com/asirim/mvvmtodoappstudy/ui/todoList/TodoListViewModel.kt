@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.asirim.mvvmtodoappstudy.data.Todo
 import com.asirim.mvvmtodoappstudy.data.TodoRepository
+import com.asirim.mvvmtodoappstudy.util.DummyData
 import com.asirim.mvvmtodoappstudy.util.Routes
 import com.asirim.mvvmtodoappstudy.util.UiEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -80,6 +81,16 @@ class TodoListViewModel @Inject constructor(
     private fun sendUiEvent(uiEvent: UiEvent) {
         viewModelScope.launch {
             _uiEvent.send(uiEvent)
+        }
+    }
+
+    fun initTodoDatabase() {
+        viewModelScope.launch {
+            todoRepository.createTodo(
+                DummyData.dummyMoveToAnotherCityTodo.copy(
+                    description = DummyData.dummyMoveToAnotherCityTodo.description + "\n\nUnfortunately, this To-Do will be added over and over again"
+                )
+            )
         }
     }
 

@@ -34,8 +34,7 @@ class TodoOperationViewModel @Inject constructor(
     val uiEvent = _uiEvent.receiveAsFlow()
 
     init {
-        // TODO (Ahmet) ---> Define "todoId" with 'const val'
-        // TODO (Ahmet) ---> Rearrange the structure below
+
         val todoId = savedStateHandle.get<Int>("todoId") ?: INVALID_TODO_ID
 
         if (todoId != INVALID_TODO_ID) {

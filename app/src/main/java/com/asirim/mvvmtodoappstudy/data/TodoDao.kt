@@ -20,6 +20,6 @@ interface TodoDao {
     suspend fun readTodoById(id: Int): Todo?
 
     @Delete
-    suspend fun deleteTodo(todo: Todo) // TODO (Ahmet) ---> I will try it by 'id'
+    suspend fun deleteTodo(todo: Todo)
 
 }

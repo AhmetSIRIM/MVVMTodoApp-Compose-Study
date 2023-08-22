@@ -94,6 +94,7 @@ fun TodoItem(
                     Spacer(modifier = Modifier.height(8.dp))
                 }
             }
+            Spacer(modifier = Modifier.width(8.dp))
             Checkbox(
                 checked = todo.isDone,
                 onCheckedChange = {
@@ -111,7 +112,7 @@ fun TodoItemPreview() {
 
         Column {
             TodoItem(
-                todo = DummyData.dummyCompleteProjectTodo,
+                todo = DummyData.dummyLearnComposeTodo,
                 onEvent = { UiEvent.PopBackStack })
             TodoItem(
                 todo = DummyData.dummyGetJobTodo,
