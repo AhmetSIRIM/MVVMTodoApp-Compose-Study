@@ -50,7 +50,7 @@ fun TodoItem(
     Card(
         modifier = modifier,
         shape = RoundedCornerShape(24.dp),
-        elevation = 10.dp
+        elevation = 24.dp
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,

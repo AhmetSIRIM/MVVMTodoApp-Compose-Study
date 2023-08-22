@@ -6,6 +6,7 @@ val Purple200 = Color(0xFFBB86FC)
 val Purple500 = Color(0xFF6200EE)
 val Purple700 = Color(0xFF3700B3)
 val Teal200 = Color(0xFF03DAC5)
+val LightGreen = Color(0xFFCBFC93)
 
 enum class TodoColorEnum(val value: Color) {
     PASTEL_PINK(Color(0xFFFFD3E0)),

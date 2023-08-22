@@ -23,6 +23,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.asirim.mvvmtodoappcomposestudy.ui.theme.LightGreen
 import com.asirim.mvvmtodoappcomposestudy.util.DummyData
 import com.asirim.mvvmtodoappcomposestudy.util.UiEvent
 
@@ -71,6 +72,7 @@ fun TodoListScreen(
     }
 
     Scaffold(
+        modifier = Modifier.padding(top = 6.dp),
         scaffoldState = scaffoldState,
         floatingActionButton = {
             Column {
@@ -81,7 +83,8 @@ fun TodoListScreen(
                                 DummyData.values().random().dummyTodo
                             )
                         )
-                    }
+                    },
+                    backgroundColor = LightGreen
                 ) {
                     Icon(
                         imageVector = Icons.Default.Face,
@@ -90,7 +93,8 @@ fun TodoListScreen(
                 }
                 Spacer(modifier = Modifier.height(8.dp))
                 FloatingActionButton(
-                    onClick = { todoListViewModel.onEvent(TodoListEvent.OnAddTodoClick) }
+                    onClick = { todoListViewModel.onEvent(TodoListEvent.OnAddTodoClick) },
+                    backgroundColor = LightGreen
                 ) {
                     Icon(
                         imageVector = Icons.Default.Add,
@@ -99,11 +103,11 @@ fun TodoListScreen(
                 }
             }
         }
-    ) {
+    ) { padding ->
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(top = 6.dp)
+                .padding(padding)
         ) {
             items(allTodo.value) { todo ->
                 TodoItem(

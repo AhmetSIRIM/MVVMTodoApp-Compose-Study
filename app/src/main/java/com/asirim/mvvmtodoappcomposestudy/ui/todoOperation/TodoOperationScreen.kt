@@ -19,6 +19,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.asirim.mvvmtodoappcomposestudy.ui.theme.LightGreen
 import com.asirim.mvvmtodoappcomposestudy.util.UiEvent
 
 @Composable
@@ -53,11 +54,11 @@ fun TodoOperationScreen(
     Scaffold(
         scaffoldState = scaffoldState,
         modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
+            .fillMaxSize(),
         floatingActionButton = {
             FloatingActionButton(
-                onClick = { todoOperationViewModel.onEvent(TodoOperationEvent.OnSaveTodoClick) }
+                onClick = { todoOperationViewModel.onEvent(TodoOperationEvent.OnSaveTodoClick) },
+                backgroundColor = LightGreen
             ) {
                 Icon(
                     imageVector = Icons.Default.Check,
@@ -65,17 +66,23 @@ fun TodoOperationScreen(
                 )
             }
         }
-    ) {
+    ) { padding ->
         Column(
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(padding)
         ) {
             TextField(
                 value = todoOperationViewModel.title,
                 onValueChange = {
-                    todoOperationViewModel.onEvent(TodoOperationEvent.OnTitleChangeClick(it))
+                    todoOperationViewModel.onEvent(
+                        TodoOperationEvent.OnTitleChangeClick(it)
+                    )
                 },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
                 placeholder = { Text(text = "Title") },
-                modifier = Modifier.fillMaxWidth()
             )
             Spacer(modifier = Modifier.height(8.dp))
             TextField(
@@ -83,8 +90,10 @@ fun TodoOperationScreen(
                 onValueChange = {
                     todoOperationViewModel.onEvent(TodoOperationEvent.OnDescriptionChangeClick(it))
                 },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
                 placeholder = { Text(text = "Description") },
-                modifier = Modifier.fillMaxWidth(),
                 singleLine = false,
                 maxLines = 5
             )
