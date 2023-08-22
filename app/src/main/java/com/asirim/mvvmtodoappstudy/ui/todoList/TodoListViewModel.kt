@@ -4,12 +4,16 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.asirim.mvvmtodoappstudy.data.Todo
 import com.asirim.mvvmtodoappstudy.data.TodoRepository
+import com.asirim.mvvmtodoappstudy.util.COMPLETED_AT
+import com.asirim.mvvmtodoappstudy.util.DECIDED_AT
 import com.asirim.mvvmtodoappstudy.util.Routes
 import com.asirim.mvvmtodoappstudy.util.UiEvent
+import com.asirim.mvvmtodoappstudy.util.formatDateToLocalString
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
+import java.util.Date
 import javax.inject.Inject
 
 @HiltViewModel
@@ -52,11 +56,19 @@ class TodoListViewModel @Inject constructor(
 
             is TodoListEvent.OnDoneUpdateClick -> {
                 viewModelScope.launch {
+
+                    val todoStatePrefix = when (todoListEvent.todo.isDone) {
+                        true -> DECIDED_AT
+                        else -> COMPLETED_AT
+                    }
+
                     todoRepository.createTodo(
                         todoListEvent.todo.copy(
+                            decidedAt = todoStatePrefix + Date().formatDateToLocalString(),
                             isDone = todoListEvent.isDone
                         )
                     )
+
                 }
             }
 

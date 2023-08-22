@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.asirim.mvvmtodoappstudy.data.Todo
 import com.asirim.mvvmtodoappstudy.data.TodoRepository
+import com.asirim.mvvmtodoappstudy.util.DECIDED_AT
 import com.asirim.mvvmtodoappstudy.util.UiEvent
 import com.asirim.mvvmtodoappstudy.util.formatDateToLocalString
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -81,7 +82,7 @@ class TodoOperationViewModel @Inject constructor(
                             id = todo?.id,
                             title = title,
                             description = description,
-                            decidedAt = "Decided at: ${Date().formatDateToLocalString()}",
+                            decidedAt = DECIDED_AT + Date().formatDateToLocalString(),
                             isDone = todo?.isDone ?: false
                         )
                     )
