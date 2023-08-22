@@ -1,8 +1,11 @@
 package com.asirim.mvvmtodoappstudy.ui.todoList
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -12,6 +15,7 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.SnackbarResult
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Face
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -19,6 +23,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.asirim.mvvmtodoappstudy.util.DummyData
 import com.asirim.mvvmtodoappstudy.util.UiEvent
 
 /**
@@ -34,8 +39,6 @@ fun TodoListScreen(
 
     val allTodo = todoListViewModel.allTodo.collectAsState(initial = emptyList())
     val scaffoldState = rememberScaffoldState()
-
-    todoListViewModel.initTodoDatabase()
 
     LaunchedEffect(key1 = true) {
         todoListViewModel.uiEvent.collect { uiEvent ->
@@ -70,13 +73,30 @@ fun TodoListScreen(
     Scaffold(
         scaffoldState = scaffoldState,
         floatingActionButton = {
-            FloatingActionButton(
-                onClick = { todoListViewModel.onEvent(TodoListEvent.OnAddTodoClick) }
-            ) {
-                Icon(
-                    imageVector = Icons.Default.Add,
-                    contentDescription = "Add"
-                )
+            Column {
+                FloatingActionButton(
+                    onClick = {
+                        todoListViewModel.onEvent(
+                            TodoListEvent.OnAddSampleTodoTodoClick(
+                                DummyData.values().random().dummyTodo
+                            )
+                        )
+                    }
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Face,
+                        contentDescription = "Add Sample Todo"
+                    )
+                }
+                Spacer(modifier = Modifier.height(8.dp))
+                FloatingActionButton(
+                    onClick = { todoListViewModel.onEvent(TodoListEvent.OnAddTodoClick) }
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Add,
+                        contentDescription = "Add"
+                    )
+                }
             }
         }
     ) {

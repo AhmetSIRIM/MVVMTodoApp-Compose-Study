@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.asirim.mvvmtodoappstudy.data.Todo
 import com.asirim.mvvmtodoappstudy.data.TodoRepository
-import com.asirim.mvvmtodoappstudy.util.DummyData
 import com.asirim.mvvmtodoappstudy.util.Routes
 import com.asirim.mvvmtodoappstudy.util.UiEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -22,6 +21,7 @@ class TodoListViewModel @Inject constructor(
     val uiEvent = _uiEvent.receiveAsFlow()
 
     val allTodo = todoRepository.readAllTodo()
+
     private var todoForUndoOptionAfterDelete: Todo? = null
 
     /** ["The 'todoRepository.createTodo(todoListEvent.todo.copy(isDone = todoListEvent.isDone))' part is actually an update operation due to '(onConflict = OnConflictStrategy.REPLACE)'"](https://youtu.be/A7CGcFjQQtQ?t=2867) */
@@ -74,6 +74,12 @@ class TodoListViewModel @Inject constructor(
                 }
             }
 
+            is TodoListEvent.OnAddSampleTodoTodoClick -> {
+                viewModelScope.launch {
+                    todoRepository.createTodo(todoListEvent.dummyTodo)
+                }
+            }
+
         }
 
     }
@@ -81,16 +87,6 @@ class TodoListViewModel @Inject constructor(
     private fun sendUiEvent(uiEvent: UiEvent) {
         viewModelScope.launch {
             _uiEvent.send(uiEvent)
-        }
-    }
-
-    fun initTodoDatabase() {
-        viewModelScope.launch {
-            todoRepository.createTodo(
-                DummyData.dummyMoveToAnotherCityTodo.copy(
-                    description = DummyData.dummyMoveToAnotherCityTodo.description + "\n\nUnfortunately, this To-Do will be added over and over again"
-                )
-            )
         }
     }
 

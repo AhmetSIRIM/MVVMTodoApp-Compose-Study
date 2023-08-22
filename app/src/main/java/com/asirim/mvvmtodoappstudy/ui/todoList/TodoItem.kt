@@ -4,10 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.Checkbox
@@ -65,7 +62,7 @@ fun TodoItem(
                 modifier = Modifier
                     .weight(1f)
                     .padding(start = 6.dp),
-                verticalArrangement = Arrangement.Center
+                verticalArrangement = Arrangement.SpaceAround
             ) {
                 Row(
                     verticalAlignment = Alignment.CenterVertically
@@ -75,32 +72,34 @@ fun TodoItem(
                         fontSize = 20.sp,
                         fontWeight = FontWeight.Bold
                     )
-                    Spacer(
-                        modifier = Modifier.width(8.dp)
-                    )
-                    IconButton(
-                        onClick = {
-                            onEvent(TodoListEvent.OnDeleteTodoClick(todo))
-                        }
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.Delete,
-                            contentDescription = "Delete"
-                        )
-                    }
                 }
                 todo.description?.let {
                     Text(text = it)
-                    Spacer(modifier = Modifier.height(8.dp))
                 }
             }
-            Spacer(modifier = Modifier.width(8.dp))
-            Checkbox(
-                checked = todo.isDone,
-                onCheckedChange = {
-                    onEvent(TodoListEvent.OnDoneUpdateClick(todo, it))
+            Column(
+                modifier = Modifier.padding(vertical = 6.dp),
+                verticalArrangement = Arrangement.SpaceAround,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                IconButton(
+                    onClick = {
+                        onEvent(TodoListEvent.OnDeleteTodoClick(todo))
+                    }
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Delete,
+                        contentDescription = "Delete"
+                    )
                 }
-            )
+                Checkbox(
+                    checked = todo.isDone,
+                    onCheckedChange = {
+                        onEvent(TodoListEvent.OnDoneUpdateClick(todo, it))
+                    }
+                )
+            }
+
         }
     }
 }
@@ -112,13 +111,13 @@ fun TodoItemPreview() {
 
         Column {
             TodoItem(
-                todo = DummyData.dummyLearnComposeTodo,
+                todo = DummyData.DUMMY_LEARN_COMPOSE_TODO.dummyTodo,
                 onEvent = { UiEvent.PopBackStack })
             TodoItem(
-                todo = DummyData.dummyGetJobTodo,
+                todo = DummyData.DUMMY_GET_JOB_TODO.dummyTodo,
                 onEvent = { UiEvent.PopBackStack })
             TodoItem(
-                todo = DummyData.dummyMoveToAnotherCityTodo,
+                todo = DummyData.DUMMY_MOVE_TO_ANOTHER_CITY_TODO.dummyTodo,
                 onEvent = { UiEvent.PopBackStack })
         }
 

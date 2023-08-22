@@ -21,4 +21,8 @@ sealed class TodoListEvent {
 
     object OnAddTodoClick : TodoListEvent()
 
+    data class OnAddSampleTodoTodoClick(
+        val dummyTodo: Todo
+    ) : TodoListEvent()
+
 }

@@ -6,10 +6,7 @@ import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.asirim.mvvmtodoappstudy.data.TodoDao
 import com.asirim.mvvmtodoappstudy.data.TodoDatabase
-import com.asirim.mvvmtodoappstudy.util.DummyData.dummyBuyTheElectricScooterTodo
-import com.asirim.mvvmtodoappstudy.util.DummyData.dummyCelebrateGettingHiredTodo
-import com.asirim.mvvmtodoappstudy.util.DummyData.dummyGetJobTodo
-import com.asirim.mvvmtodoappstudy.util.DummyData.dummyLearnComposeTodo
+import com.asirim.mvvmtodoappstudy.util.DummyData
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -41,13 +38,7 @@ object TodoDatabaseModule {
                 super.onCreate(db)
                 applicationScope.launch {
                     provideTodoDatabase(applicationContext, applicationScope)
-                        .todoDao.createTodo(dummyLearnComposeTodo)
-                    provideTodoDatabase(applicationContext, applicationScope)
-                        .todoDao.createTodo(dummyGetJobTodo)
-                    provideTodoDatabase(applicationContext, applicationScope)
-                        .todoDao.createTodo(dummyCelebrateGettingHiredTodo)
-                    provideTodoDatabase(applicationContext, applicationScope)
-                        .todoDao.createTodo(dummyBuyTheElectricScooterTodo)
+                        .todoDao.createTodo(DummyData.DUMMY_LEARN_COMPOSE_TODO.dummyTodo)
                 }
             }
         }).build()

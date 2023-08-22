@@ -69,13 +69,13 @@ fun GreetingPreview() {
 
         Column {
             TodoItem(
-                todo = DummyData.dummyLearnComposeTodo,
+                todo = DummyData.DUMMY_LEARN_COMPOSE_TODO.dummyTodo,
                 onEvent = { UiEvent.PopBackStack })
             TodoItem(
-                todo = DummyData.dummyGetJobTodo,
+                todo = DummyData.DUMMY_GET_JOB_TODO.dummyTodo,
                 onEvent = { UiEvent.PopBackStack })
             TodoItem(
-                todo = DummyData.dummyMoveToAnotherCityTodo,
+                todo = DummyData.DUMMY_MOVE_TO_ANOTHER_CITY_TODO.dummyTodo,
                 onEvent = { UiEvent.PopBackStack })
         }
 
