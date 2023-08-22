@@ -9,10 +9,12 @@ import androidx.lifecycle.viewModelScope
 import com.asirim.mvvmtodoappstudy.data.Todo
 import com.asirim.mvvmtodoappstudy.data.TodoRepository
 import com.asirim.mvvmtodoappstudy.util.UiEvent
+import com.asirim.mvvmtodoappstudy.util.formatDateToLocalString
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
+import java.util.Date
 import javax.inject.Inject
 
 @HiltViewModel
@@ -76,10 +78,11 @@ class TodoOperationViewModel @Inject constructor(
 
                     todoRepository.createTodo(
                         Todo(
+                            id = todo?.id,
                             title = title,
                             description = description,
-                            isDone = todo?.isDone ?: false,
-                            id = todo?.id
+                            decidedAt = "Decided at: ${Date().formatDateToLocalString()}",
+                            isDone = todo?.isDone ?: false
                         )
                     )
 

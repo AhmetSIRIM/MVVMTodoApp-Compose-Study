@@ -14,6 +14,8 @@ data class Todo(
 
     val description: String?,
 
+    var decidedAt: String,
+
     val isDone: Boolean
 
 )

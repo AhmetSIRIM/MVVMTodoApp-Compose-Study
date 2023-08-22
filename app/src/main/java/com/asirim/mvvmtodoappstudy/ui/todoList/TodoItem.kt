@@ -4,6 +4,8 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
@@ -59,25 +61,6 @@ fun TodoItem(
         ) {
 
             Column(
-                modifier = Modifier
-                    .weight(1f)
-                    .padding(start = 6.dp),
-                verticalArrangement = Arrangement.SpaceAround
-            ) {
-                Row(
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Text(
-                        text = todo.title,
-                        fontSize = 20.sp,
-                        fontWeight = FontWeight.Bold
-                    )
-                }
-                todo.description?.let {
-                    Text(text = it)
-                }
-            }
-            Column(
                 modifier = Modifier.padding(vertical = 6.dp),
                 verticalArrangement = Arrangement.SpaceAround,
                 horizontalAlignment = Alignment.CenterHorizontally
@@ -98,6 +81,32 @@ fun TodoItem(
                         onEvent(TodoListEvent.OnDoneUpdateClick(todo, it))
                     }
                 )
+            }
+            Column(
+                modifier = Modifier
+                    .weight(1f)
+                    .padding(start = 6.dp),
+                verticalArrangement = Arrangement.SpaceAround
+            ) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        text = todo.title,
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
+                Text(
+                    text = todo.decidedAt,
+                    modifier = Modifier.padding(vertical = 4.dp),
+                    fontSize = 10.sp,
+                    fontWeight = FontWeight.Normal
+                )
+                Spacer(modifier = Modifier.height(8.dp))
+                todo.description?.let {
+                    Text(text = it)
+                }
             }
 
         }
