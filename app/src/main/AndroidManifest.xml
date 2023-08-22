@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
-        android:name=".MVVMTodoAppStudy"
+        android:name="com.asirim.mvvmtodoappcomposestudy.MVVMTodoAppComposeStudy"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -11,12 +11,12 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MVVMTodoAppStudy"
+        android:theme="@style/Theme.MVVMTodoAppComposeStudy"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name="com.asirim.mvvmtodoappcomposestudy.MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.MVVMTodoAppStudy">
+            android:theme="@style/Theme.MVVMTodoAppComposeStudy">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

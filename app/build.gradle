@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace 'com.asirim.mvvmtodoappstudy'
+    namespace 'com.asirim.mvvmtodoappcomposestudy'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.asirim.mvvmtodoappstudy"
+        applicationId "com.asirim.mvvmtodoappcomposestudy"
         minSdk 24
         targetSdk 33
         versionCode 1
